@@ -14,6 +14,18 @@ title('Simulated K-space')
 subplot(1,4,3);plot(abs(kspace));axis square;
 title('Simulated K-space')
 
+% k空间平移
+ShiftRead = 10;
+Width = zeros(Readout,1);
+for i=1:Readout
+    Width(i,1) = complex(cos(i*ShiftRead),-sin(i*ShiftRead));
+end
+Width = repmat(Width,1,Readout);
+kspace = kspace .* Width;
+
+% k空间翻转
+kspace = flip(kspace);
+
 % 从K空间恢复到原图
 I0 = fftshift(ifft2(ifftshift(kspace)));
 subplot(1,4,4);imagesc(abs(I0));axis square;

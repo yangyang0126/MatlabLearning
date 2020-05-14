@@ -17,8 +17,8 @@ subplot(1,4,3);plot(abs(kspace));axis square;
 title('Simulated K-space')
 
 % % k空间平移
-ShiftRead = 10;
-ShiftPhase = 15;
+ShiftRead = 1;
+ShiftPhase = 1;
 Width = zeros(Readout,1);
 for i=1:Readout
     Width(i,1) = complex(cos(i*ShiftRead),-sin(i*ShiftRead));
@@ -28,7 +28,7 @@ Height = zeros(1,Readout);
 for i=1:Readout
     Height(1,i) = complex(cos(i*ShiftPhase),sin(i*ShiftPhase));
 end
-Height = repmat(Height,Readout,1);
+Height = repmat(Height,Height,Readout);
 kspace = kspace .* Width.*Height;
 
 % % k空间翻转

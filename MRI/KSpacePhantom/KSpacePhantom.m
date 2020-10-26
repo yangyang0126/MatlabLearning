@@ -3,8 +3,9 @@ Readout = 300;
 
 % 生成头部模拟图
 [P,~] = phantom('Modified Shepp-Logan',200);
-Image = zeros(300,300);
-Image(1:200,1:200) = P;
+% Image = zeros(300,300);
+% Image(1:200,1:200) = P;
+Image = P;
 figure;
 subplot(1,4,1);imagesc(abs(Image));axis square;
 title('Software head phantom')
@@ -17,8 +18,8 @@ subplot(1,4,3);plot(abs(kspace));axis square;
 title('Simulated K-space')
 
 % % k空间平移
-ShiftRead = 10;
-ShiftPhase = 15;
+ShiftRead = 0;
+ShiftPhase = 0;
 Width = zeros(Readout,1);
 for i=1:Readout
     Width(i,1) = complex(cos(i*ShiftRead),-sin(i*ShiftRead));
